@@ -1,6 +1,6 @@
 <?php
 
-class Guru extends CI_Controller{
+class guru extends CI_Controller{
     
     public function index()
     {
