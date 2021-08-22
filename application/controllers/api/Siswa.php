@@ -6,7 +6,7 @@ class Siswa extends REST_Controller {
 
 	public function __construct(){
 		parent::__construct();
-		$this->load->model('Siswa_model');
+		$this->load->model('M_siswa');
 	}
 
 	// Menambahkan data siswa (POST)
