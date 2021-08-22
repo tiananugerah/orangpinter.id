@@ -1,6 +1,6 @@
 <?php
 defined('BASEPATH') OR exit('No direct script access allowed');
-class M_mapel extends CI_Model{
+class M_jabatan extends CI_Model{
     private $response;
 	private $max_per_page = 10;
 
@@ -28,7 +28,7 @@ class M_mapel extends CI_Model{
 			$this->db->like($wherename, $wherevalue);
 		}
 
-		$query_totaldata = $this->db->get('s_guru');
+		$query_totaldata = $this->db->get('s_jabatan');
 
 		// sort option
 		if($sortname != "null" && $sortvalue != "null"){
@@ -41,7 +41,7 @@ class M_mapel extends CI_Model{
 		} else if($type == 1 && ($wherename != "null" && $wherevalue != "null")){
 			$this->db->like($wherename, $wherevalue);
 		}
-		$query = $this->db->get('s_guru', $this->max_per_page, $page);
+		$query = $this->db->get('s_jabatan', $this->max_per_page, $page);
 
 		if($query && $query_totaldata){
 			// jika query berhasil maka httpcode yang diberikan adalah 200(success)
@@ -63,7 +63,7 @@ class M_mapel extends CI_Model{
     {
         // menambahkan data guru pada request berdasarkan data json
         // data $request akan dimasukan pada fungsi addGuru ini melalui controller.
-        $query = $this->db->insert('s_guru', $request);
+        $query = $this->db->insert('s_jabatan', $request);
         if($query) {
             // jika query berhasil maka httpcode yang diberikan adalah 200(success)
             $this->response['status_code'] = 200;
@@ -78,11 +78,11 @@ class M_mapel extends CI_Model{
         return $this->response;
     }
 
-    public function editGuru($nip,$request)
+    public function editGuru($kd_jabatan,$request)
     {
-        // data $request dan $nip akan dimasukan pada fungsi editGuru ini melalui controller.
-        $this->db->where('nip', $nip);
-        $query = $this->db->update('s_guru', $request);
+        // data $request dan $kd_jabatan akan dimasukan pada fungsi editGuru ini melalui controller.
+        $this->db->where('kd_jabatan', $kd_jabatan);
+        $query = $this->db->update('s_jabatan', $request);
         if($query) {
             // jika query berhasil maka httpcode yang diberikan adalah 200(success)
             $this->response['status_code'] = 200;
@@ -97,11 +97,11 @@ class M_mapel extends CI_Model{
 		return $this->response;
     }
 
-    public function deleteGuru($nip)
+    public function deleteGuru($kd_jabatan)
     {
-        // data $request dan $nip akan dimasukan pada fungsi deleteGuru ini melalui controller.
-        $this->db->where('nip', $nip);
-        $query = $this->db->delete('s_guru');
+        // data $request dan $kd_jabatan akan dimasukan pada fungsi deleteGuru ini melalui controller.
+        $this->db->where('kd_jabatan', $kd_jabatan);
+        $query = $this->db->delete('s_jabatan');
         if($query) {
             // jika query berhasil maka httpcode yang diberikan adalah 200(success)
             $this->response['status_code'] = 200;
