@@ -8,7 +8,7 @@ class Siswa extends REST_Controller {
 		parent::__construct();
 		$this->load->model('M_siswa');
 	}
-
+	
 	// Menambahkan data siswa (POST)
 	public function index_post(){
 		$query = $this->M_siswa->addSiswa($this->post());

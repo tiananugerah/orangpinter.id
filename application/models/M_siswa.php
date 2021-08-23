@@ -59,15 +59,15 @@ class M_siswa extends CI_Model{
 		return $this->response;
     }
 
-    public function addsiswa($request) 
+    public function addGuru($request) 
     {
-        // menambahkan data siswa pada request berdasarkan data json
-        // data $request akan dimasukan pada fungsi addsiswa ini melalui controller.
+        // menambahkan data guru pada request berdasarkan data json
+        // data $request akan dimasukan pada fungsi addGuru ini melalui controller.
         $query = $this->db->insert('s_siswa', $request);
         if($query) {
             // jika query berhasil maka httpcode yang diberikan adalah 200(success)
             $this->response['status_code'] = 200;
-            $this->response['status_message'] = "data siswa berhasil disimpan";
+            $this->response['status_message'] = "data guru berhasil disimpan";
             $this->response['data'] = $request;
         }else{
             // jika query gagal atau error maka akan menampilkan httpcode 500(internal server error)
@@ -78,15 +78,15 @@ class M_siswa extends CI_Model{
         return $this->response;
     }
 
-    public function editsiswa($nis,$request)
+    public function editGuru($nis,$request)
     {
-        // data $request dan $nis akan dimasukan pada fungsi editsiswa ini melalui controller.
+        // data $request dan $nis akan dimasukan pada fungsi editGuru ini melalui controller.
         $this->db->where('nis', $nis);
         $query = $this->db->update('s_siswa', $request);
         if($query) {
             // jika query berhasil maka httpcode yang diberikan adalah 200(success)
             $this->response['status_code'] = 200;
-            $this->response['status_message'] = "data siswa berhasil diubah";
+            $this->response['status_message'] = "data guru berhasil diubah";
             $this->response['data'] = $request;
         }else{
             // jika query gagal atau error maka akan menampilkan httpcode 500(internal server error)
@@ -97,15 +97,15 @@ class M_siswa extends CI_Model{
 		return $this->response;
     }
 
-    public function deletesiswa($nis)
+    public function deleteGuru($nis)
     {
-        // data $request dan $nis akan dimasukan pada fungsi deletesiswa ini melalui controller.
+        // data $request dan $nis akan dimasukan pada fungsi deleteGuru ini melalui controller.
         $this->db->where('nis', $nis);
         $query = $this->db->delete('s_siswa');
         if($query) {
             // jika query berhasil maka httpcode yang diberikan adalah 200(success)
             $this->response['status_code'] = 200;
-            $this->response['status_message'] = "data siswa berhasil dihapus";
+            $this->response['status_message'] = "data guru berhasil dihapus";
             $this->response['data'] = $request;
         }else{
             // jika query gagal atau error maka akan menampilkan httpcode 500(internal server error)
