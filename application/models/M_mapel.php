@@ -1,6 +1,6 @@
 <?php
 defined('BASEPATH') OR exit('No direct script access allowed');
-class M_guru extends CI_Model{
+class M_Mapel extends CI_Model{
     private $response;
 	private $max_per_page = 10;
 
@@ -59,15 +59,15 @@ class M_guru extends CI_Model{
 		return $this->response;
     }
 
-    public function addGuru($request) 
+    public function addMapel($request) 
     {
-        // menambahkan data guru pada request berdasarkan data json
-        // data $request akan dimasukan pada fungsi addGuru ini melalui controller.
+        // menambahkan data Mapel pada request berdasarkan data json
+        // data $request akan dimasukan pada fungsi addMapel ini melalui controller.
         $query = $this->db->insert('s_mapel', $request);
         if($query) {
             // jika query berhasil maka httpcode yang diberikan adalah 200(success)
             $this->response['status_code'] = 200;
-            $this->response['status_message'] = "data guru berhasil disimpan";
+            $this->response['status_message'] = "data Mapel berhasil disimpan";
             $this->response['data'] = $request;
         }else{
             // jika query gagal atau error maka akan menampilkan httpcode 500(internal server error)
@@ -78,15 +78,15 @@ class M_guru extends CI_Model{
         return $this->response;
     }
 
-    public function editGuru($kd_mapel,$request)
+    public function editMapel($kd_mapel,$request)
     {
-        // data $request dan $kd_mapel akan dimasukan pada fungsi editGuru ini melalui controller.
+        // data $request dan $kd_mapel akan dimasukan pada fungsi editMapel ini melalui controller.
         $this->db->where('kd_mapel', $kd_mapel);
         $query = $this->db->update('s_mapel', $request);
         if($query) {
             // jika query berhasil maka httpcode yang diberikan adalah 200(success)
             $this->response['status_code'] = 200;
-            $this->response['status_message'] = "data guru berhasil diubah";
+            $this->response['status_message'] = "data Mapel berhasil diubah";
             $this->response['data'] = $request;
         }else{
             // jika query gagal atau error maka akan menampilkan httpcode 500(internal server error)
@@ -97,15 +97,15 @@ class M_guru extends CI_Model{
 		return $this->response;
     }
 
-    public function deleteGuru($kd_mapel)
+    public function deleteMapel($kd_mapel)
     {
-        // data $request dan $kd_mapel akan dimasukan pada fungsi deleteGuru ini melalui controller.
+        // data $request dan $kd_mapel akan dimasukan pada fungsi deleteMapel ini melalui controller.
         $this->db->where('kd_mapel', $kd_mapel);
         $query = $this->db->delete('s_mapel');
         if($query) {
             // jika query berhasil maka httpcode yang diberikan adalah 200(success)
             $this->response['status_code'] = 200;
-            $this->response['status_message'] = "data guru berhasil dihapus";
+            $this->response['status_message'] = "data Mapel berhasil dihapus";
             $this->response['data'] = $request;
         }else{
             // jika query gagal atau error maka akan menampilkan httpcode 500(internal server error)

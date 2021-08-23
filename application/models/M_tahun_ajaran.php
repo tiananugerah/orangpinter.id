@@ -59,15 +59,15 @@ class M_tahun_ajaran extends CI_Model{
 		return $this->response;
     }
 
-    public function addGuru($request) 
+    public function addTahun_ajaran($request) 
     {
-        // menambahkan data guru pada request berdasarkan data json
-        // data $request akan dimasukan pada fungsi addGuru ini melalui controller.
+        // menambahkan data Tahun_ajaran pada request berdasarkan data json
+        // data $request akan dimasukan pada fungsi addTahun_ajaran ini melalui controller.
         $query = $this->db->insert('s_tahun_ajaran', $request);
         if($query) {
             // jika query berhasil maka httpcode yang diberikan adalah 200(success)
             $this->response['status_code'] = 200;
-            $this->response['status_message'] = "data guru berhasil disimpan";
+            $this->response['status_message'] = "data Tahun_ajaran berhasil disimpan";
             $this->response['data'] = $request;
         }else{
             // jika query gagal atau error maka akan menampilkan httpcode 500(internal server error)
@@ -78,15 +78,15 @@ class M_tahun_ajaran extends CI_Model{
         return $this->response;
     }
 
-    public function editGuru($kd_tahun_ajaran,$request)
+    public function editTahun_ajaran($kd_tahun_ajaran,$request)
     {
-        // data $request dan $kd_tahun_ajaran akan dimasukan pada fungsi editGuru ini melalui controller.
+        // data $request dan $kd_tahun_ajaran akan dimasukan pada fungsi editTahun_ajaran ini melalui controller.
         $this->db->where('kd_tahun_ajaran', $kd_tahun_ajaran);
         $query = $this->db->update('s_tahun_ajaran', $request);
         if($query) {
             // jika query berhasil maka httpcode yang diberikan adalah 200(success)
             $this->response['status_code'] = 200;
-            $this->response['status_message'] = "data guru berhasil diubah";
+            $this->response['status_message'] = "data Tahun_ajaran berhasil diubah";
             $this->response['data'] = $request;
         }else{
             // jika query gagal atau error maka akan menampilkan httpcode 500(internal server error)
@@ -97,15 +97,15 @@ class M_tahun_ajaran extends CI_Model{
 		return $this->response;
     }
 
-    public function deleteGuru($kd_tahun_ajaran)
+    public function deleteTahun_ajaran($kd_tahun_ajaran)
     {
-        // data $request dan $kd_tahun_ajaran akan dimasukan pada fungsi deleteGuru ini melalui controller.
+        // data $request dan $kd_tahun_ajaran akan dimasukan pada fungsi deleteTahun_ajaran ini melalui controller.
         $this->db->where('kd_tahun_ajaran', $kd_tahun_ajaran);
         $query = $this->db->delete('s_tahun_ajaran');
         if($query) {
             // jika query berhasil maka httpcode yang diberikan adalah 200(success)
             $this->response['status_code'] = 200;
-            $this->response['status_message'] = "data guru berhasil dihapus";
+            $this->response['status_message'] = "data Tahun_ajaran berhasil dihapus";
             $this->response['data'] = $request;
         }else{
             // jika query gagal atau error maka akan menampilkan httpcode 500(internal server error)

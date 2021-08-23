@@ -59,15 +59,15 @@ class M_jurusan extends CI_Model{
 		return $this->response;
     }
 
-    public function addGuru($request) 
+    public function addJurusan($request) 
     {
-        // menambahkan data guru pada request berdasarkan data json
-        // data $request akan dimasukan pada fungsi addGuru ini melalui controller.
+        // menambahkan data Jurusan pada request berdasarkan data json
+        // data $request akan dimasukan pada fungsi addJurusan ini melalui controller.
         $query = $this->db->insert('s_jurusan', $request);
         if($query) {
             // jika query berhasil maka httpcode yang diberikan adalah 200(success)
             $this->response['status_code'] = 200;
-            $this->response['status_message'] = "data guru berhasil disimpan";
+            $this->response['status_message'] = "data Jurusan berhasil disimpan";
             $this->response['data'] = $request;
         }else{
             // jika query gagal atau error maka akan menampilkan httpcode 500(internal server error)
@@ -78,15 +78,15 @@ class M_jurusan extends CI_Model{
         return $this->response;
     }
 
-    public function editGuru($kd_jurusan,$request)
+    public function editJurusan($kd_jurusan,$request)
     {
-        // data $request dan $kd_jurusan akan dimasukan pada fungsi editGuru ini melalui controller.
+        // data $request dan $kd_jurusan akan dimasukan pada fungsi editJurusan ini melalui controller.
         $this->db->where('kd_jurusan', $kd_jurusan);
         $query = $this->db->update('s_jurusan', $request);
         if($query) {
             // jika query berhasil maka httpcode yang diberikan adalah 200(success)
             $this->response['status_code'] = 200;
-            $this->response['status_message'] = "data guru berhasil diubah";
+            $this->response['status_message'] = "data Jurusan berhasil diubah";
             $this->response['data'] = $request;
         }else{
             // jika query gagal atau error maka akan menampilkan httpcode 500(internal server error)
@@ -97,15 +97,15 @@ class M_jurusan extends CI_Model{
 		return $this->response;
     }
 
-    public function deleteGuru($kd_jurusan)
+    public function deleteJurusan($kd_jurusan)
     {
-        // data $request dan $kd_jurusan akan dimasukan pada fungsi deleteGuru ini melalui controller.
+        // data $request dan $kd_jurusan akan dimasukan pada fungsi deleteJurusan ini melalui controller.
         $this->db->where('kd_jurusan', $kd_jurusan);
         $query = $this->db->delete('s_jurusan');
         if($query) {
             // jika query berhasil maka httpcode yang diberikan adalah 200(success)
             $this->response['status_code'] = 200;
-            $this->response['status_message'] = "data guru berhasil dihapus";
+            $this->response['status_message'] = "data Jurusan berhasil dihapus";
             $this->response['data'] = $request;
         }else{
             // jika query gagal atau error maka akan menampilkan httpcode 500(internal server error)

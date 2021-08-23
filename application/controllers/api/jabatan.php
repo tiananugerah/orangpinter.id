@@ -1,17 +1,17 @@
 <?php 
 include_once(APPPATH.'libraries/REST_Controller.php');
 defined('BASEPATH') OR exit('No direct script access allowed');
-class Siswa extends REST_Controller {
+class Jabatan extends REST_Controller {
 
 
 	public function __construct(){
 		parent::__construct();
-		$this->load->model('M_siswa');
+		$this->load->model('M_jabatan');
 	}
 
-	// Menambahkan data siswa (POST)
+	// Menambahkan data jabatan (POST)
 	public function index_post(){
-		$query = $this->M_siswa->addSiswa($this->post());
+		$query = $this->M_jabatan->addjabatan($this->post());
 		$this->response($query, $query['status_code']);
 	}
 
@@ -19,7 +19,7 @@ class Siswa extends REST_Controller {
 		if($page == null || $sortname == null || $sortvalue == null || $wherename == null || $wherevalue == null){
 			$this->response('api parameter required', 500);
 		} else {
-			$query = $this->M_siswa->getSiswa('0',$page, $sortname, $sortvalue, $wherename, $wherevalue);
+			$query = $this->M_jabatan->getjabatan('0',$page, $sortname, $sortvalue, $wherename, $wherevalue);
 			$this->response($query, $query['status_code']);
 		}
 	}
@@ -28,21 +28,21 @@ class Siswa extends REST_Controller {
 		if($page == null || $sortname == null || $sortvalue == null || $wherename == null || $wherevalue == null){
 			$this->response('api parameter required', 500);
 		} else {
-			$query = $this->M_siswa->getSiswa('1',$page, $sortname, $sortvalue, $wherename, $wherevalue);
+			$query = $this->M_jabatan->getjabatan('1',$page, $sortname, $sortvalue, $wherename, $wherevalue);
 			$this->response($query, $query['status_code']);
 		}
 	}
 
 
-	// Menghapus data siswa (DELETE)
-	public function single_delete($id_siswa = null){
-		$query = $this->M_siswa->deleteSiswa($id_siswa);
+	// Menghapus data jabatan (DELETE)
+	public function single_delete($id_jabatan = null){
+		$query = $this->M_jabatan->deletejabatan($id_jabatan);
 		$this->response($query, $query['status_code']);
 	}
 
-	// Mengubah data siswa (PUT)
-	public function single_put($id_siswa = null){
-		$query = $this->M_siswa->editSiswa($id_siswa,$this->put());
+	// Mengubah data jabatan (PUT)
+	public function single_put($id_jabatan = null){
+		$query = $this->M_jabatan->editjabatan($id_jabatan,$this->put());
 		$this->response($query, $query['status_code']);
 	}
 

@@ -59,15 +59,15 @@ class M_nilai extends CI_Model{
 		return $this->response;
     }
 
-    public function addGuru($request) 
+    public function addnilai($request) 
     {
-        // menambahkan data guru pada request berdasarkan data json
-        // data $request akan dimasukan pada fungsi addGuru ini melalui controller.
+        // menambahkan data nilai pada request berdasarkan data json
+        // data $request akan dimasukan pada fungsi addnilai ini melalui controller.
         $query = $this->db->insert('s_nilai', $request);
         if($query) {
             // jika query berhasil maka httpcode yang diberikan adalah 200(success)
             $this->response['status_code'] = 200;
-            $this->response['status_message'] = "data guru berhasil disimpan";
+            $this->response['status_message'] = "data nilai berhasil disimpan";
             $this->response['data'] = $request;
         }else{
             // jika query gagal atau error maka akan menampilkan httpcode 500(internal server error)
@@ -78,15 +78,15 @@ class M_nilai extends CI_Model{
         return $this->response;
     }
 
-    public function editGuru($kd_nilai,$request)
+    public function editnilai($kd_nilai,$request)
     {
-        // data $request dan $kd_nilai akan dimasukan pada fungsi editGuru ini melalui controller.
+        // data $request dan $kd_nilai akan dimasukan pada fungsi editnilai ini melalui controller.
         $this->db->where('kd_nilai', $kd_nilai);
         $query = $this->db->update('s_nilai', $request);
         if($query) {
             // jika query berhasil maka httpcode yang diberikan adalah 200(success)
             $this->response['status_code'] = 200;
-            $this->response['status_message'] = "data guru berhasil diubah";
+            $this->response['status_message'] = "data nilai berhasil diubah";
             $this->response['data'] = $request;
         }else{
             // jika query gagal atau error maka akan menampilkan httpcode 500(internal server error)
@@ -97,15 +97,15 @@ class M_nilai extends CI_Model{
 		return $this->response;
     }
 
-    public function deleteGuru($kd_nilai)
+    public function deletenilai($kd_nilai)
     {
-        // data $request dan $kd_nilai akan dimasukan pada fungsi deleteGuru ini melalui controller.
+        // data $request dan $kd_nilai akan dimasukan pada fungsi deletenilai ini melalui controller.
         $this->db->where('kd_nilai', $kd_nilai);
         $query = $this->db->delete('s_nilai');
         if($query) {
             // jika query berhasil maka httpcode yang diberikan adalah 200(success)
             $this->response['status_code'] = 200;
-            $this->response['status_message'] = "data guru berhasil dihapus";
+            $this->response['status_message'] = "data nilai berhasil dihapus";
             $this->response['data'] = $request;
         }else{
             // jika query gagal atau error maka akan menampilkan httpcode 500(internal server error)

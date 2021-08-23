@@ -59,15 +59,15 @@ class M_spp extends CI_Model{
 		return $this->response;
     }
 
-    public function addGuru($request) 
+    public function addspp($request) 
     {
-        // menambahkan data guru pada request berdasarkan data json
-        // data $request akan dimasukan pada fungsi addGuru ini melalui controller.
+        // menambahkan data spp pada request berdasarkan data json
+        // data $request akan dimasukan pada fungsi addspp ini melalui controller.
         $query = $this->db->insert('s_spp', $request);
         if($query) {
             // jika query berhasil maka httpcode yang diberikan adalah 200(success)
             $this->response['status_code'] = 200;
-            $this->response['status_message'] = "data guru berhasil disimpan";
+            $this->response['status_message'] = "data spp berhasil disimpan";
             $this->response['data'] = $request;
         }else{
             // jika query gagal atau error maka akan menampilkan httpcode 500(internal server error)
@@ -78,15 +78,15 @@ class M_spp extends CI_Model{
         return $this->response;
     }
 
-    public function editGuru($kd_spp,$request)
+    public function editspp($kd_spp,$request)
     {
-        // data $request dan $kd_spp akan dimasukan pada fungsi editGuru ini melalui controller.
+        // data $request dan $kd_spp akan dimasukan pada fungsi editspp ini melalui controller.
         $this->db->where('kd_spp', $kd_spp);
         $query = $this->db->update('s_spp', $request);
         if($query) {
             // jika query berhasil maka httpcode yang diberikan adalah 200(success)
             $this->response['status_code'] = 200;
-            $this->response['status_message'] = "data guru berhasil diubah";
+            $this->response['status_message'] = "data spp berhasil diubah";
             $this->response['data'] = $request;
         }else{
             // jika query gagal atau error maka akan menampilkan httpcode 500(internal server error)
@@ -97,15 +97,15 @@ class M_spp extends CI_Model{
 		return $this->response;
     }
 
-    public function deleteGuru($kd_spp)
+    public function deletespp($kd_spp)
     {
-        // data $request dan $kd_spp akan dimasukan pada fungsi deleteGuru ini melalui controller.
+        // data $request dan $kd_spp akan dimasukan pada fungsi deletespp ini melalui controller.
         $this->db->where('kd_spp', $kd_spp);
         $query = $this->db->delete('s_spp');
         if($query) {
             // jika query berhasil maka httpcode yang diberikan adalah 200(success)
             $this->response['status_code'] = 200;
-            $this->response['status_message'] = "data guru berhasil dihapus";
+            $this->response['status_message'] = "data spp berhasil dihapus";
             $this->response['data'] = $request;
         }else{
             // jika query gagal atau error maka akan menampilkan httpcode 500(internal server error)
