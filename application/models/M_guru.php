@@ -1,6 +1,6 @@
 <?php
 defined('BASEPATH') OR exit('No direct script access allowed');
-class M_mapel extends CI_Model{
+class M_guru extends CI_Model{
     private $response;
 	private $max_per_page = 10;
 
@@ -28,12 +28,13 @@ class M_mapel extends CI_Model{
 			$this->db->like($wherename, $wherevalue);
 		}
 
-		$query_totaldata = $this->db->get('s_guru');
+		$query_totaldata = $this->db->get('siswa');
 
 		// sort option
 		if($sortname != "null" && $sortvalue != "null"){
 			$this->db->order_by($sortname, $sortvalue);
 		}
+        
 
 		// search option
 		if($type == 0 && ($wherename != "null" && $wherevalue != "null")){
@@ -41,7 +42,7 @@ class M_mapel extends CI_Model{
 		} else if($type == 1 && ($wherename != "null" && $wherevalue != "null")){
 			$this->db->like($wherename, $wherevalue);
 		}
-		$query = $this->db->get('s_guru', $this->max_per_page, $page);
+		$query = $this->db->get('siswa', $this->max_per_page, $page);
 
 		if($query && $query_totaldata){
 			// jika query berhasil maka httpcode yang diberikan adalah 200(success)
