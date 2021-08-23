@@ -19,7 +19,7 @@ class Siswa extends REST_Controller {
 		if($page == null || $sortname == null || $sortvalue == null || $wherename == null || $wherevalue == null){
 			$this->response('api parameter required', 500);
 		} else {
-			$query = $this->M_siswa->getSiswa('0',$page, $sortname, $sortvalue, $wherename, $wherevalue);
+			$query = $this->M_siswa->getData('0',$page, $sortname, $sortvalue, $wherename, $wherevalue);
 			$this->response($query, $query['status_code']);
 		}
 	}
@@ -28,7 +28,7 @@ class Siswa extends REST_Controller {
 		if($page == null || $sortname == null || $sortvalue == null || $wherename == null || $wherevalue == null){
 			$this->response('api parameter required', 500);
 		} else {
-			$query = $this->M_siswa->getSiswa('1',$page, $sortname, $sortvalue, $wherename, $wherevalue);
+			$query = $this->M_siswa->getData('1',$page, $sortname, $sortvalue, $wherename, $wherevalue);
 			$this->response($query, $query['status_code']);
 		}
 	}
