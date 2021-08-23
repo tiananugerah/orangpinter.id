@@ -41,6 +41,7 @@
           </a>
           <ul class="treeview-menu">
             <li><a href="#"><i class="fa fa-circle-o"></i> Kelas</a></li>
+            <li><a href="#"><i class="fa fa-circle-o"></i> Jurusan</a></li>
             <li><a href="#"><i class="fa fa-circle-o"></i> Bagian</a></li>
             <li><a href="#"><i class="fa fa-circle-o"></i> Silabus</a></li>
             <li><a href="#"><i class="fa fa-circle-o"></i> Tugas</a></li>
