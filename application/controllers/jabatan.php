@@ -19,7 +19,7 @@ class Jabatan extends REST_Controller {
 		if($page == null || $sortname == null || $sortvalue == null || $wherename == null || $wherevalue == null){
 			$this->response('api parameter required', 500);
 		} else {
-			$query = $this->M_jabatan->getjabatan('0',$page, $sortname, $sortvalue, $wherename, $wherevalue);
+			$query = $this->M_jabatan->getData('0',$page, $sortname, $sortvalue, $wherename, $wherevalue);
 			$this->response($query, $query['status_code']);
 		}
 	}
@@ -28,7 +28,7 @@ class Jabatan extends REST_Controller {
 		if($page == null || $sortname == null || $sortvalue == null || $wherename == null || $wherevalue == null){
 			$this->response('api parameter required', 500);
 		} else {
-			$query = $this->M_jabatan->getjabatan('1',$page, $sortname, $sortvalue, $wherename, $wherevalue);
+			$query = $this->M_jabatan->getData('1',$page, $sortname, $sortvalue, $wherename, $wherevalue);
 			$this->response($query, $query['status_code']);
 		}
 	}
