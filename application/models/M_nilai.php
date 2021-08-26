@@ -28,7 +28,13 @@ class M_nilai extends CI_Model{
 			$this->db->like($wherename, $wherevalue);
 		}
 
-		$query_totaldata = $this->db->get('s_nilai');
+        $this->db->select('*');
+        $this->db->from('s_nilai');
+        $this->db->join('s_mapel','s_mapel.kd_mapel = s_nilai.kd_mapel','left');
+        $this->db->join('s_pengajar','s_pengajar.nip = s_nilai.nip','left');
+        $this->db->join('s_tahun_ajaran','s_tahun_ajaran.kd_ajaran = s_nilai.kd_ajaran','left');
+        $this->db->group_by("s_tahun_ajaran.tahun_ajaran");
+        $query_totaldata = $this->db->get();
 
 		// sort option
 		if($sortname != "null" && $sortvalue != "null"){
@@ -41,7 +47,14 @@ class M_nilai extends CI_Model{
 		} else if($type == 1 && ($wherename != "null" && $wherevalue != "null")){
 			$this->db->like($wherename, $wherevalue);
 		}
-		$query = $this->db->get('s_nilai', $this->max_per_page, $page);
+
+        $this->db->select('*');
+        $this->db->from('s_nilai', $this->max_per_page, $page);
+        $this->db->join('s_mapel','s_mapel.kd_mapel = s_nilai.kd_mapel','left');
+        $this->db->join('s_pengajar','s_pengajar.nip = s_nilai.nip','left');
+        $this->db->join('s_tahun_ajaran','s_tahun_ajaran.kd_ajaran = s_nilai.kd_ajaran','left');
+        $this->db->group_by("s_tahun_ajaran.tahun_ajaran");
+        $query = $this->db->get();
 
 		if($query && $query_totaldata){
 			// jika query berhasil maka httpcode yang diberikan adalah 200(success)

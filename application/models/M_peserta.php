@@ -1,6 +1,6 @@
 <?php
 defined('BASEPATH') OR exit('No direct script access allowed');
-class M_siswa extends CI_Model{
+class M_peserta extends CI_Model{
     private $response;
 	private $max_per_page = 10;
 
@@ -18,36 +18,43 @@ class M_siswa extends CI_Model{
 
 		// sort option
 		if($sortname != "null" && $sortvalue != "null"){
-			$this->db->order_by($sortname, $sortvalue);
+			$this->db->order_by('s_peserta.'.$sortname, $sortvalue);
 		}
 
 		// search option
 		if($type == 0 && ($wherename != "null" && $wherevalue != "null")){
-			$this->db->where($wherename, $wherevalue);
+			$this->db->where('s_peserta.'.$wherename, $wherevalue);
 		} else if($type == 1 && ($wherename != "null" && $wherevalue != "null")){
-			$this->db->like($wherename, $wherevalue);
+			$this->db->like('s_peserta.'.$wherename, $wherevalue);
 		}
 
         $this->db->select('*');
-        $this->db->from('s_siswa');
-        $this->db->join('s_wali','s_siswa.nis = s_wali.nis','left');
-        $this->db->join('s_institusi','s_siswa.kd_institusi = s_institusi.kd_institusi','left');
-        $this->db->join('s_jurusan','s_siswa.kd_jurusan = s_jurusan.kd_jurusan','left');
-        $this->db->group_by("s_institusi.s_institusi");
-        $query_totaldata = $this->db->get()->result();;
+        $this->db->from('s_peserta');
+        $this->db->join('s_wali','s_peserta.nis = s_wali.nis','left');
+        $this->db->join('s_institusi','s_peserta.kd_institusi = s_institusi.kd_institusi','left');
+        $this->db->join('s_jurusan','s_peserta.kd_jurusan = s_jurusan.kd_jurusan','left');
+        $this->db->group_by("s_institusi.kd_institusi");
+        $query_totaldata = $this->db->get();
 
 		// sort option
 		if($sortname != "null" && $sortvalue != "null"){
-			$this->db->order_by($sortname, $sortvalue);
+			$this->db->order_by('s_peserta.'.$sortname, $sortvalue);
 		}
 
 		// search option
 		if($type == 0 && ($wherename != "null" && $wherevalue != "null")){
-			$this->db->where($wherename, $wherevalue);
+			$this->db->where('s_peserta.'.$wherename, $wherevalue);
 		} else if($type == 1 && ($wherename != "null" && $wherevalue != "null")){
-			$this->db->like($wherename, $wherevalue);
+			$this->db->like('s_peserta.'.$wherename, $wherevalue);
 		}
-		$query = $this->db->get('s_siswa', $this->max_per_page, $page);
+        
+        $this->db->select('*');
+        $this->db->from('s_peserta', $this->max_per_page, $page);
+        $this->db->join('s_wali','s_peserta.nis = s_wali.nis','left');
+        $this->db->join('s_institusi','s_peserta.kd_institusi = s_institusi.kd_institusi','left');
+        $this->db->join('s_jurusan','s_peserta.kd_jurusan = s_jurusan.kd_jurusan','left');
+        $this->db->group_by("s_institusi.kd_institusi");
+        $query = $this->db->get();
 
 		if($query && $query_totaldata){
 			// jika query berhasil maka httpcode yang diberikan adalah 200(success)
@@ -65,15 +72,15 @@ class M_siswa extends CI_Model{
 		return $this->response;
     }
 
-    public function addsiswa($request) 
+    public function addpeserta($request) 
     {
-        // menambahkan data siswa pada request berdasarkan data json
-        // data $request akan dimasukan pada fungsi addsiswa ini melalui controller.
-        $query = $this->db->insert('s_siswa', $request);
+        // menambahkan data peserta pada request berdasarkan data json
+        // data $request akan dimasukan pada fungsi addpeserta ini melalui controller.
+        $query = $this->db->insert('s_peserta', $request);
         if($query) {
             // jika query berhasil maka httpcode yang diberikan adalah 200(success)
             $this->response['status_code'] = 200;
-            $this->response['status_message'] = "data siswa berhasil disimpan";
+            $this->response['status_message'] = "data peserta berhasil disimpan";
             $this->response['data'] = $request;
         }else{
             // jika query gagal atau error maka akan menampilkan httpcode 500(internal server error)
@@ -84,15 +91,15 @@ class M_siswa extends CI_Model{
         return $this->response;
     }
 
-    public function editsiswa($nis,$request)
+    public function editpeserta($nis,$request)
     {
-        // data $request dan $nis akan dimasukan pada fungsi editsiswa ini melalui controller.
+        // data $request dan $nis akan dimasukan pada fungsi editpeserta ini melalui controller.
         $this->db->where('nis', $nis);
-        $query = $this->db->update('s_siswa', $request);
+        $query = $this->db->update('s_peserta', $request);
         if($query) {
             // jika query berhasil maka httpcode yang diberikan adalah 200(success)
             $this->response['status_code'] = 200;
-            $this->response['status_message'] = "data siswa berhasil diubah";
+            $this->response['status_message'] = "data peserta berhasil diubah";
             $this->response['data'] = $request;
         }else{
             // jika query gagal atau error maka akan menampilkan httpcode 500(internal server error)
@@ -103,16 +110,16 @@ class M_siswa extends CI_Model{
 		return $this->response;
     }
 
-    public function deletesiswa($nis)
+    public function deletepeserta($nis)
     {
-        // data $request dan $nis akan dimasukan pada fungsi deletesiswa ini melalui controller.
+        // data $request dan $nis akan dimasukan pada fungsi deletepeserta ini melalui controller.
         $this->db->where('nis', $nis);
-        $query = $this->db->delete('s_siswa');
+        $query = $this->db->delete('s_peserta');
         if($query) {
             // jika query berhasil maka httpcode yang diberikan adalah 200(success)
             $this->response['status_code'] = 200;
-            $this->response['status_message'] = "data siswa berhasil dihapus";
-            $this->response['data'] = $request;
+            $this->response['status_message'] = "data peserta berhasil dihapus";
+            $this->response['data'] = $nis;
         }else{
             // jika query gagal atau error maka akan menampilkan httpcode 500(internal server error)
             $this->response['status_code'] =  500;

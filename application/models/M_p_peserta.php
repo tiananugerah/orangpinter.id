@@ -1,6 +1,6 @@
 <?php
 defined('BASEPATH') OR exit('No direct script access allowed');
-class M_p_siswa extends CI_Model{
+class M_p_peserta extends CI_Model{
     private $response;
 	private $max_per_page = 10;
 
@@ -28,7 +28,7 @@ class M_p_siswa extends CI_Model{
 			$this->db->like($wherename, $wherevalue);
 		}
 
-		$query_totaldata = $this->db->get('s_p_siswa');
+		$query_totaldata = $this->db->get('s_p_peserta');
 
 		// sort option
 		if($sortname != "null" && $sortvalue != "null"){
@@ -41,7 +41,7 @@ class M_p_siswa extends CI_Model{
 		} else if($type == 1 && ($wherename != "null" && $wherevalue != "null")){
 			$this->db->like($wherename, $wherevalue);
 		}
-		$query = $this->db->get('s_p_siswa', $this->max_per_page, $page);
+		$query = $this->db->get('s_p_peserta', $this->max_per_page, $page);
 
 		if($query && $query_totaldata){
 			// jika query berhasil maka httpcode yang diberikan adalah 200(success)
@@ -59,15 +59,15 @@ class M_p_siswa extends CI_Model{
 		return $this->response;
     }
 
-    public function addP_siswa($request) 
+    public function addP_peserta($request) 
     {
-        // menambahkan data P_siswa pada request berdasarkan data json
-        // data $request akan dimasukan pada fungsi addP_siswa ini melalui controller.
-        $query = $this->db->insert('s_p_siswa', $request);
+        // menambahkan data P_peserta pada request berdasarkan data json
+        // data $request akan dimasukan pada fungsi addP_peserta ini melalui controller.
+        $query = $this->db->insert('s_p_peserta', $request);
         if($query) {
             // jika query berhasil maka httpcode yang diberikan adalah 200(success)
             $this->response['status_code'] = 200;
-            $this->response['status_message'] = "data P_siswa berhasil disimpan";
+            $this->response['status_message'] = "data P_peserta berhasil disimpan";
             $this->response['data'] = $request;
         }else{
             // jika query gagal atau error maka akan menampilkan httpcode 500(internal server error)
@@ -78,15 +78,15 @@ class M_p_siswa extends CI_Model{
         return $this->response;
     }
 
-    public function editP_siswa($kd_p_siswa,$request)
+    public function editP_peserta($kd_p_peserta,$request)
     {
-        // data $request dan $kd_p_siswa akan dimasukan pada fungsi editP_siswa ini melalui controller.
-        $this->db->where('kd_p_siswa', $kd_p_siswa);
-        $query = $this->db->update('s_p_siswa', $request);
+        // data $request dan $kd_p_peserta akan dimasukan pada fungsi editP_peserta ini melalui controller.
+        $this->db->where('kd_p_peserta', $kd_p_peserta);
+        $query = $this->db->update('s_p_peserta', $request);
         if($query) {
             // jika query berhasil maka httpcode yang diberikan adalah 200(success)
             $this->response['status_code'] = 200;
-            $this->response['status_message'] = "data P_siswa berhasil diubah";
+            $this->response['status_message'] = "data P_peserta berhasil diubah";
             $this->response['data'] = $request;
         }else{
             // jika query gagal atau error maka akan menampilkan httpcode 500(internal server error)
@@ -97,15 +97,15 @@ class M_p_siswa extends CI_Model{
 		return $this->response;
     }
 
-    public function deleteP_siswa($kd_p_siswa)
+    public function deleteP_peserta($kd_p_peserta)
     {
-        // data $request dan $kd_p_siswa akan dimasukan pada fungsi deleteP_siswa ini melalui controller.
-        $this->db->where('kd_p_siswa', $kd_p_siswa);
-        $query = $this->db->delete('s_p_siswa');
+        // data $request dan $kd_p_peserta akan dimasukan pada fungsi deleteP_peserta ini melalui controller.
+        $this->db->where('kd_p_peserta', $kd_p_peserta);
+        $query = $this->db->delete('s_p_peserta');
         if($query) {
             // jika query berhasil maka httpcode yang diberikan adalah 200(success)
             $this->response['status_code'] = 200;
-            $this->response['status_message'] = "data P_siswa berhasil dihapus";
+            $this->response['status_message'] = "data P_peserta berhasil dihapus";
             $this->response['data'] = $request;
         }else{
             // jika query gagal atau error maka akan menampilkan httpcode 500(internal server error)
