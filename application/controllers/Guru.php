@@ -6,6 +6,11 @@ class Guru extends REST_Controller{
     public function __construct()
     {
         parent::__construct();
+        header('Content-Type: application/json');
+        header("Access-Control-Allow-Origin: *");		// CORS
+        header("Access-Control-Allow-Headers: Access-Control-Allow-Origin, Accept");
+        header("Access-Control-Allow-Headers: X-API-KEY, Origin, X-Requested-With, Content-Type, Accept, Access-Control-Request-Method, Authorization");
+        header("Access-Control-Allow-Methods: GET, POST, OPTIONS, PUT, DELETE");
         $this->load->model('M_guru');
     }
 
