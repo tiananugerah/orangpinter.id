@@ -59,15 +59,15 @@ class M_kelas extends CI_Model{
 		return $this->response;
     }
 
-    public function addKelas($request) 
+    public function addkelas($request) 
     {
-        // menambahkan data Kelas pada request berdasarkan data json
-        // data $request akan dimasukan pada fungsi addKelas ini melalui controller.
+        // menambahkan data kelas pada request berdasarkan data json
+        // data $request akan dimasukan pada fungsi addkelas ini melalui controller.
         $query = $this->db->insert('s_kelas', $request);
         if($query) {
             // jika query berhasil maka httpcode yang diberikan adalah 200(success)
             $this->response['status_code'] = 200;
-            $this->response['status_message'] = "data Kelas berhasil disimpan";
+            $this->response['status_message'] = "data kelas berhasil disimpan";
             $this->response['data'] = $request;
         }else{
             // jika query gagal atau error maka akan menampilkan httpcode 500(internal server error)
@@ -78,15 +78,15 @@ class M_kelas extends CI_Model{
         return $this->response;
     }
 
-    public function editKelas($kd_kelas,$request)
+    public function editkelas($kd_kelas,$request)
     {
-        // data $request dan $kd_kelas akan dimasukan pada fungsi editKelas ini melalui controller.
+        // data $request dan $kd_kelas akan dimasukan pada fungsi editkelas ini melalui controller.
         $this->db->where('kd_kelas', $kd_kelas);
         $query = $this->db->update('s_kelas', $request);
         if($query) {
             // jika query berhasil maka httpcode yang diberikan adalah 200(success)
             $this->response['status_code'] = 200;
-            $this->response['status_message'] = "data Kelas berhasil diubah";
+            $this->response['status_message'] = "data kelas berhasil diubah";
             $this->response['data'] = $request;
         }else{
             // jika query gagal atau error maka akan menampilkan httpcode 500(internal server error)
@@ -97,16 +97,16 @@ class M_kelas extends CI_Model{
 		return $this->response;
     }
 
-    public function deleteKelas($kd_kelas)
+    public function deletekelas($kd_kelas)
     {
-        // data $request dan $kd_kelas akan dimasukan pada fungsi deleteKelas ini melalui controller.
+        // data $request dan $kd_kelas akan dimasukan pada fungsi deletekelas ini melalui controller.
         $this->db->where('kd_kelas', $kd_kelas);
         $query = $this->db->delete('s_kelas');
         if($query) {
             // jika query berhasil maka httpcode yang diberikan adalah 200(success)
             $this->response['status_code'] = 200;
-            $this->response['status_message'] = "data Kelas berhasil dihapus";
-            $this->response['data'] = $request;
+            $this->response['status_message'] = "data kelas berhasil dihapus";
+            $this->response['data'] = $kd_kelas;
         }else{
             // jika query gagal atau error maka akan menampilkan httpcode 500(internal server error)
             $this->response['status_code'] =  500;

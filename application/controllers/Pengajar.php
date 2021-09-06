@@ -1,7 +1,7 @@
 <?php
 include_once(APPPATH.'libraries/REST_Controller.php');
 defined('BASEPATH') OR exit('No direct script access allowed');
-class Guru extends REST_Controller{
+class Pengajar extends REST_Controller{
 
     public function __construct()
     {
@@ -11,7 +11,7 @@ class Guru extends REST_Controller{
         header("Access-Control-Allow-Headers: Access-Control-Allow-Origin, Accept");
         header("Access-Control-Allow-Headers: X-API-KEY, Origin, X-Requested-With, Content-Type, Accept, Access-Control-Request-Method, Authorization");
         header("Access-Control-Allow-Methods: GET, POST, OPTIONS, PUT, DELETE");
-        $this->load->model('M_guru');
+        $this->load->model('M_pengajar');
     }
 
     // fitur tampil data(read)
@@ -20,7 +20,7 @@ class Guru extends REST_Controller{
         if($page == null || $sortname == null || $sortvalue == null || $wherename == null || $wherevalue == null) {
 			$this->response('api parameter required', 500);
 		} else {
-			$query = $this->M_guru->getData('0',$page, $sortname, $sortvalue, $wherename, $wherevalue);
+			$query = $this->M_pengajar->getData('0',$page, $sortname, $sortvalue, $wherename, $wherevalue);
 			$this->response($query, $query['status_code']);
 		}
     }
@@ -28,21 +28,21 @@ class Guru extends REST_Controller{
     // fitur insert data(post)
     public function index_post()
     {
-        $query = $this->M_guru->addGuru($this->post());
+        $query = $this->M_pengajar->addpengajar($this->post());
         $this->response($query, $query['status_code']);
     }
 
     // fitur update data(put)
     public function index_update($nip = null)
     {
-        $query = $this->M_guru->editGuru($nip, $this->put());
+        $query = $this->M_pengajar->editpengajar($nip, $this->put());
         $this->response($query, $query['status_code']);
     }
 
     // fitur hapus data(delete)
     public function index_delete($nip = null)
     {
-        $query = $this->M_guru->deleteGuru($nip);
+        $query = $this->M_pengajar->deletepengajar($nip);
         $this->response($query, $query['status_code']);
     }
 }

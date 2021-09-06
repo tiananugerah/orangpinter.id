@@ -30,7 +30,7 @@ class M_nilai extends CI_Model{
 
         $this->db->select('*');
         $this->db->from('s_nilai');
-        $this->db->join('s_mapel','s_mapel.kd_mapel = s_nilai.kd_mapel','left');
+        $this->db->join('s_nilai','s_nilai.kd_nilai = s_nilai.kd_nilai','left');
         $this->db->join('s_pengajar','s_pengajar.nip = s_nilai.nip','left');
         $this->db->join('s_tahun_ajaran','s_tahun_ajaran.kd_ajaran = s_nilai.kd_ajaran','left');
         $this->db->group_by("s_tahun_ajaran.tahun_ajaran");
@@ -50,7 +50,7 @@ class M_nilai extends CI_Model{
 
         $this->db->select('*');
         $this->db->from('s_nilai', $this->max_per_page, $page);
-        $this->db->join('s_mapel','s_mapel.kd_mapel = s_nilai.kd_mapel','left');
+        $this->db->join('s_nilai','s_nilai.kd_nilai = s_nilai.kd_nilai','left');
         $this->db->join('s_pengajar','s_pengajar.nip = s_nilai.nip','left');
         $this->db->join('s_tahun_ajaran','s_tahun_ajaran.kd_ajaran = s_nilai.kd_ajaran','left');
         $this->db->group_by("s_tahun_ajaran.tahun_ajaran");
@@ -119,7 +119,7 @@ class M_nilai extends CI_Model{
             // jika query berhasil maka httpcode yang diberikan adalah 200(success)
             $this->response['status_code'] = 200;
             $this->response['status_message'] = "data nilai berhasil dihapus";
-            $this->response['data'] = $request;
+            $this->response['data'] = $kd_nilai;
         }else{
             // jika query gagal atau error maka akan menampilkan httpcode 500(internal server error)
             $this->response['status_code'] =  500;

@@ -59,15 +59,15 @@ class M_keuangan extends CI_Model{
 		return $this->response;
     }
 
-    public function addKuangan($request) 
+    public function addkeuangan($request) 
     {
-        // menambahkan data Kuangan pada request berdasarkan data json
-        // data $request akan dimasukan pada fungsi addKuangan ini melalui controller.
+        // menambahkan data keuangan pada request berdasarkan data json
+        // data $request akan dimasukan pada fungsi addkeuangan ini melalui controller.
         $query = $this->db->insert('s_keuangan', $request);
         if($query) {
             // jika query berhasil maka httpcode yang diberikan adalah 200(success)
             $this->response['status_code'] = 200;
-            $this->response['status_message'] = "data Kuangan berhasil disimpan";
+            $this->response['status_message'] = "data keuangan berhasil disimpan";
             $this->response['data'] = $request;
         }else{
             // jika query gagal atau error maka akan menampilkan httpcode 500(internal server error)
@@ -78,15 +78,15 @@ class M_keuangan extends CI_Model{
         return $this->response;
     }
 
-    public function editKuangan($kd_keuangan,$request)
+    public function editkeuangan($kd_keuangan,$request)
     {
-        // data $request dan $kd_keuangan akan dimasukan pada fungsi editKuangan ini melalui controller.
+        // data $request dan $kd_keuangan akan dimasukan pada fungsi editkeuangan ini melalui controller.
         $this->db->where('kd_keuangan', $kd_keuangan);
         $query = $this->db->update('s_keuangan', $request);
         if($query) {
             // jika query berhasil maka httpcode yang diberikan adalah 200(success)
             $this->response['status_code'] = 200;
-            $this->response['status_message'] = "data Kuangan berhasil diubah";
+            $this->response['status_message'] = "data keuangan berhasil diubah";
             $this->response['data'] = $request;
         }else{
             // jika query gagal atau error maka akan menampilkan httpcode 500(internal server error)
@@ -97,16 +97,16 @@ class M_keuangan extends CI_Model{
 		return $this->response;
     }
 
-    public function deleteKuangan($kd_keuangan)
+    public function deletekeuangan($kd_keuangan)
     {
-        // data $request dan $kd_keuangan akan dimasukan pada fungsi deleteKuangan ini melalui controller.
+        // data $request dan $kd_keuangan akan dimasukan pada fungsi deletekeuangan ini melalui controller.
         $this->db->where('kd_keuangan', $kd_keuangan);
         $query = $this->db->delete('s_keuangan');
         if($query) {
             // jika query berhasil maka httpcode yang diberikan adalah 200(success)
             $this->response['status_code'] = 200;
-            $this->response['status_message'] = "data Kuangan berhasil dihapus";
-            $this->response['data'] = $request;
+            $this->response['status_message'] = "data keuangan berhasil dihapus";
+            $this->response['data'] = $kd_keuangan;
         }else{
             // jika query gagal atau error maka akan menampilkan httpcode 500(internal server error)
             $this->response['status_code'] =  500;

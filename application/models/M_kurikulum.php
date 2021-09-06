@@ -59,15 +59,15 @@ class M_kurikulum extends CI_Model{
 		return $this->response;
     }
 
-    public function addKurikulum($request) 
+    public function addkurikulum($request) 
     {
-        // menambahkan data Kurikulum pada request berdasarkan data json
-        // data $request akan dimasukan pada fungsi addKurikulum ini melalui controller.
+        // menambahkan data kurikulum pada request berdasarkan data json
+        // data $request akan dimasukan pada fungsi addkurikulum ini melalui controller.
         $query = $this->db->insert('s_kurikulum', $request);
         if($query) {
             // jika query berhasil maka httpcode yang diberikan adalah 200(success)
             $this->response['status_code'] = 200;
-            $this->response['status_message'] = "data Kurikulum berhasil disimpan";
+            $this->response['status_message'] = "data kurikulum berhasil disimpan";
             $this->response['data'] = $request;
         }else{
             // jika query gagal atau error maka akan menampilkan httpcode 500(internal server error)
@@ -78,15 +78,15 @@ class M_kurikulum extends CI_Model{
         return $this->response;
     }
 
-    public function editKurikulum($kd_kurikulum,$request)
+    public function editkurikulum($kd_kurikulum,$request)
     {
-        // data $request dan $kd_kurikulum akan dimasukan pada fungsi editKurikulum ini melalui controller.
+        // data $request dan $kd_kurikulum akan dimasukan pada fungsi editkurikulum ini melalui controller.
         $this->db->where('kd_kurikulum', $kd_kurikulum);
         $query = $this->db->update('s_kurikulum', $request);
         if($query) {
             // jika query berhasil maka httpcode yang diberikan adalah 200(success)
             $this->response['status_code'] = 200;
-            $this->response['status_message'] = "data Kurikulum berhasil diubah";
+            $this->response['status_message'] = "data kurikulum berhasil diubah";
             $this->response['data'] = $request;
         }else{
             // jika query gagal atau error maka akan menampilkan httpcode 500(internal server error)
@@ -97,16 +97,16 @@ class M_kurikulum extends CI_Model{
 		return $this->response;
     }
 
-    public function deleteKurikulum($kd_kurikulum)
+    public function deletekurikulum($kd_kurikulum)
     {
-        // data $request dan $kd_kurikulum akan dimasukan pada fungsi deleteKurikulum ini melalui controller.
+        // data $request dan $kd_kurikulum akan dimasukan pada fungsi deletekurikulum ini melalui controller.
         $this->db->where('kd_kurikulum', $kd_kurikulum);
         $query = $this->db->delete('s_kurikulum');
         if($query) {
             // jika query berhasil maka httpcode yang diberikan adalah 200(success)
             $this->response['status_code'] = 200;
-            $this->response['status_message'] = "data Kurikulum berhasil dihapus";
-            $this->response['data'] = $request;
+            $this->response['status_message'] = "data kurikulum berhasil dihapus";
+            $this->response['data'] = $kd_kurikulum;
         }else{
             // jika query gagal atau error maka akan menampilkan httpcode 500(internal server error)
             $this->response['status_code'] =  500;

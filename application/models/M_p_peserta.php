@@ -106,7 +106,7 @@ class M_p_peserta extends CI_Model{
             // jika query berhasil maka httpcode yang diberikan adalah 200(success)
             $this->response['status_code'] = 200;
             $this->response['status_message'] = "data P_peserta berhasil dihapus";
-            $this->response['data'] = $request;
+            $this->response['data'] = $kd_p_peserta;
         }else{
             // jika query gagal atau error maka akan menampilkan httpcode 500(internal server error)
             $this->response['status_code'] =  500;

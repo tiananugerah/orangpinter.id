@@ -59,15 +59,15 @@ class M_jadwal extends CI_Model{
 		return $this->response;
     }
 
-    public function addJadwal($request) 
+    public function addjadwal($request) 
     {
-        // menambahkan data Jadwal pada request berdasarkan data json
-        // data $request akan dimasukan pada fungsi addJadwal ini melalui controller.
+        // menambahkan data jadwal pada request berdasarkan data json
+        // data $request akan dimasukan pada fungsi addjadwal ini melalui controller.
         $query = $this->db->insert('s_jadwal', $request);
         if($query) {
             // jika query berhasil maka httpcode yang diberikan adalah 200(success)
             $this->response['status_code'] = 200;
-            $this->response['status_message'] = "data Jadwal berhasil disimpan";
+            $this->response['status_message'] = "data jadwal berhasil disimpan";
             $this->response['data'] = $request;
         }else{
             // jika query gagal atau error maka akan menampilkan httpcode 500(internal server error)
@@ -78,15 +78,15 @@ class M_jadwal extends CI_Model{
         return $this->response;
     }
 
-    public function editJadwal($kd_jadwal,$request)
+    public function editjadwal($kd_jadwal,$request)
     {
-        // data $request dan $kd_jadwal akan dimasukan pada fungsi editJadwal ini melalui controller.
+        // data $request dan $kd_jadwal akan dimasukan pada fungsi editjadwal ini melalui controller.
         $this->db->where('kd_jadwal', $kd_jadwal);
         $query = $this->db->update('s_jadwal', $request);
         if($query) {
             // jika query berhasil maka httpcode yang diberikan adalah 200(success)
             $this->response['status_code'] = 200;
-            $this->response['status_message'] = "data Jadwal berhasil diubah";
+            $this->response['status_message'] = "data jadwal berhasil diubah";
             $this->response['data'] = $request;
         }else{
             // jika query gagal atau error maka akan menampilkan httpcode 500(internal server error)
@@ -97,16 +97,16 @@ class M_jadwal extends CI_Model{
 		return $this->response;
     }
 
-    public function deleteJadwal($kd_jadwal)
+    public function deletejadwal($kd_jadwal)
     {
-        // data $request dan $kd_jadwal akan dimasukan pada fungsi deleteJadwal ini melalui controller.
+        // data $request dan $kd_jadwal akan dimasukan pada fungsi deletejadwal ini melalui controller.
         $this->db->where('kd_jadwal', $kd_jadwal);
         $query = $this->db->delete('s_jadwal');
         if($query) {
             // jika query berhasil maka httpcode yang diberikan adalah 200(success)
             $this->response['status_code'] = 200;
-            $this->response['status_message'] = "data Jadwal berhasil dihapus";
-            $this->response['data'] = $request;
+            $this->response['status_message'] = "data jadwal berhasil dihapus";
+            $this->response['data'] = $kd_jadwal;
         }else{
             // jika query gagal atau error maka akan menampilkan httpcode 500(internal server error)
             $this->response['status_code'] =  500;
