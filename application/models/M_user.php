@@ -74,6 +74,31 @@ class M_user extends CI_Model{
 		return $this->response;
     }
 
+    public function login($request) 
+    {
+        // menambahkan data user pada request berdasarkan data json
+        // data $request akan dimasukan pada fungsi adduser ini melalui controller.       
+        $this->db->select('s_user.nis as nis , concat');
+        $this->db->from('s_user');
+        $this->db->join('s_peserta','s_peserta.nis = s_user.nis','left');
+        $this->db->join('s_institusi','s_peserta.kd_institusi = s_institusi.kd_institusi','left');
+        $this->db->join('s_jurusan','s_peserta.kd_jurusan = s_jurusan.kd_jurusan','left');
+        $this->db->group_by("s_user.username");
+        $query = $this->db->get();
+        if($query) {
+            // jika query berhasil maka httpcode yang diberikan adalah 200(success)
+            $this->response['status_code'] = 200;
+            $this->response['status_message'] = "data user berhasil disimpan";
+            $this->response['data'] = $request;
+        }else{
+            // jika query gagal atau error maka akan menampilkan httpcode 500(internal server error)
+            $this->response['status_code'] = 500;
+            $this->response['status_message'] = $this->db->error();
+        }
+        // mengembalikan nilai request untuk diproses di controller sebagai httpcode dan respon dari web services 
+        return $this->response;
+    }
+
     public function adduser($request) 
     {
         // menambahkan data user pada request berdasarkan data json
